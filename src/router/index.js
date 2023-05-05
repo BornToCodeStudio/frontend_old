@@ -4,6 +4,7 @@ import Home from '../views/home-view.vue'
 import SignUp from '../views/signUp-view.vue'
 import SignIn from '../views/signIn-view.vue'
 import Profile from '../views/profile-view.vue'
+import TaskPage from '../views/task-view.vue'
 
 
 const routes = [ 
@@ -26,6 +27,11 @@ const routes = [
         path: '/Profile',
         name: 'Profile',
         component: Profile
+    },
+    {
+        path: '/Task',
+        name: "Task",
+        component: TaskPage
     }
 ];
 

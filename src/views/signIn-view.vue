@@ -13,7 +13,7 @@
 <script>
 import axios from 'axios';
 
-export default{
+export default {
     name: "SignIn",
     components: {
 

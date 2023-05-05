@@ -35,17 +35,19 @@ import axios from 'axios';
 import previewImageDefault from '../assets/default_preview_solution.png';
 import HomeTask from '../components/home-task.vue';
 import ItemSwitcher from '../components/item-switcher.vue'
+//import TaskPage from '../views/task-view.vue'
 
 export default {
   name: "home-view",
   components: {
     HomeTask,
-    ItemSwitcher
+    ItemSwitcher,
+    //TaskPage
 },
     data() {
         return {
-          tasks: [{author: "author1", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault},
-          {author: "author2", isTried: true, name: "работа с JSON1", description: "abob1a", previewimage: previewImageDefault},
+          tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault},
+          {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault},
           {author: "author2", isTried: true, name: "работа с JSON1", description: "abob1a", previewimage: previewImageDefault}],
         }
     },
