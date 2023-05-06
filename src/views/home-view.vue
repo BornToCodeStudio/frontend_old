@@ -42,54 +42,59 @@ export default {
     HomeTask,
     ItemSwitcher,
 },
-    data() {
-        return {
-          tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1, },
-          {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 25},
-          {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
-        }
-    },
-    methods: { 
-        getTasks() {
-            let i = 0;
-            let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;
-            let arr = [];
-            this.tasks.forEach(function(item) {
-                if (i == maxI)
-                  return arr;
-                else
-                  i++;
-                arr.push(item);
-            });
+  data() {
+      return {
+        tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1, },
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 25},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
+      }
+  },
+  mounted() {
+    this.test();
+  },
+  methods: {
+      test() {
+        this.$store.state.homeTasks = this.tasks;
+      },
+      getTasks() {
+        let i = 0;
+        let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;
+        let arr = [];
+        this.tasks.forEach(function(item) {
+            if (i == maxI)
+              return arr;
+            else
+              i++;
+            arr.push(item);
+        });
 
-            return arr;
-        },        
-        calculatePages(length) {
-            return length != 0 ? Math.ceil(length / 2) : 0;
-        },
-        async loadTasks() {
-            let data = await axios({
-                method: 'get',
-                url: process.env.VUE_APP_API_URL,
-                responseType: 'json'
-            }).then(function (response) {
-                if (response.status == 200) {
-                    return response.data;
-                }
+        return arr;
+      },        
+      calculatePages(length) {
+        return length != 0 ? Math.ceil(length / 2) : 0;
+      },
+      async loadTasks() {
+        let data = await axios({
+            method: 'get',
+            url: process.env.VUE_APP_API_URL,
+            responseType: 'json'
+        }).then(function (response) {
+            if (response.status == 200) {
+                return response.data;
+            }
 
-                return [];
-            });
-            this.tasks = data;
-        },
-
-        getPreview(id) {
-          let task = this.tasks.find(t => t.id == id);
-          if (!task)
-            return previewImageDefault;
-            
-          return task.previewimage;
-        }
-    }
+            return [];
+        });
+        this.tasks = data;
+      },
+      getPreview(id) {
+        let task = this.tasks.find(t => t.id == id);
+        if (!task)
+          return previewImageDefault;
+          
+        return task.previewimage;
+      }
+  }
 };
 </script>
 
