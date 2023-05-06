@@ -2,20 +2,19 @@
     <main>
         <div class="code__area">
             <div class="code__live">
-                <textarea v-model="content" id="editor"></textarea>
+                <textarea ref="editor"></textarea>
             </div>
             <div class="buttons">
                 <button class="upload__file">Upload file</button>
-                <button class="preview">Preview</button>
+                <button class="preview" @click="preview()">Preview</button>
                 <button class="send__code">Send code</button>
             </div>
-            <div class="code__preview">
-            </div>
+            <iframe class="code__preview" :srcdoc="text"/>
         </div>
 
         <div class="info">
             <span class="result">result</span>
-            <span class="description">{{description}}</span>
+            <span class="description">{{ task().description }}</span>
             <div class="comments">
 
             </div>
@@ -36,13 +35,27 @@
         },
         data() {
             return {
-                content: "alert();",
-                description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!»."
+                text: "",
+                description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».",
+                codeMirror: null
+            }
+        },
+        methods: {
+            task() {
+                let id = Number(this.$route.params.id);
+                let task = this.$store.getters.getTask(id);
+                if (!task)
+                    return;
 
-}
-                },
+                return task;
+            },
+            preview() {
+                let text = this.codeMirror.display.maxLine.text;
+                this.text = text;
+            }
+        },
         mounted() {
-            CodeMirror.fromTextArea(document.getElementById('editor'),{
+            this.codeMirror = CodeMirror.fromTextArea(this.$refs.editor, {
                 lineNumbers: true,
                 theme: "yeti",
                 mode: 'javascript',
@@ -97,6 +110,11 @@
             }
         }
 
+        .code__preview {
+            width: 100%;
+            height: 300px;
+        }
+
         .info {
             display: flex;
             flex-direction: column;
@@ -113,7 +131,7 @@
                 border-radius: 15px;
                 background-color: #EFEFEF;
                 text-align: center;
-                height: 75%;
+                height: 275px;
             }
         }
     }
