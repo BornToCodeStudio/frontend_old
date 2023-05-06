@@ -1,5 +1,7 @@
 <template>
-    <button class="number">{{number}}</button>
+    <router-link :to="'/'+ number">
+        <button class="number">{{number}}</button>
+    </router-link>
 </template>
 
 

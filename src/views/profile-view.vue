@@ -55,7 +55,7 @@ export default{
         return {
             tasksCount: 0,
             tasks: [],
-            nickname: "",
+            nickname: "user",
             aboutme: "",
             file: "",
             avatarUrl: '../assets/default_avatar.png',
