@@ -2,7 +2,7 @@
     <main>
         <div class="code__area">
             <div class="code__live">
-                <textarea class="code__editor" v-model="content" id="editor"></textarea>
+                <textarea v-model="content" id="editor"></textarea>
             </div>
             <div class="buttons">
                 <button class="upload__file">Upload file</button>
@@ -15,7 +15,7 @@
 
         <div class="info">
             <span class="result">result</span>
-            <span class="description">description</span>
+            <span class="description">{{description}}</span>
             <div class="comments">
 
             </div>
@@ -30,12 +30,14 @@
     import 'codemirror/mode/javascript/javascript.js'
 
     export default {
+        name: "TaskPage",
         components: {
         
         },
         data() {
             return {
-                content: "let a = 0;",
+                content: "alert();",
+                description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!»."
 
 }
                 },
@@ -62,6 +64,10 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+
+            #editor {
+                border-radius: 50px;
+            }
 
             .buttons {
                 display: flex;

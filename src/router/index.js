@@ -9,7 +9,7 @@ import TaskPage from '../views/task-view.vue'
 
 const routes = [ 
     {
-        path: '/',
+        path: '/:page?',
         name: "Home",
         component: Home
     },
@@ -24,12 +24,12 @@ const routes = [
         component: SignIn
     },
     {
-        path: '/Profile',
+        path: '/Profile/:userId?',
         name: 'Profile',
         component: Profile
     },
     {
-        path: '/Task',
+        path: '/Task/:id?',
         name: "Task",
         component: TaskPage
     }

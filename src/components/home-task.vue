@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/task">
+    <router-link :to="'/Task/' + task.taskId">
         <div class="home__tasks">
             <div class="left__part">
                 <img :src="task.previewimage" ref='taskImg' alt="unload" class="image__preview">
@@ -16,7 +16,7 @@
 
 <script>
 
-export default{
+export default {
     name: "Home-Task",
     props: { 
         task: {
