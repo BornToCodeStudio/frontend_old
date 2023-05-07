@@ -2,7 +2,7 @@
     <main>
         <div class="code__area">
             <div class="code__live">
-                <textarea ref="editor"></textarea>
+                <textarea class="text__code" ref="editor"></textarea>
             </div>
             <div class="buttons">
                 <button class="upload__file">Upload file</button>
@@ -69,6 +69,7 @@
 
 <style lang="scss" scoped>
     main {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
         display: grid;
         grid-template-columns: 70% 20%;
         gap: 50px;
@@ -78,8 +79,8 @@
             flex-direction: column;
             gap: 15px;
 
-            #editor {
-                border-radius: 50px;
+            .text__code {
+                border-radius: 15px;
             }
 
             .buttons {
@@ -92,13 +93,16 @@
                     border-width: 0px;
                     background-color: #99B0ED;
                     color: white;
+                    padding: 0.5em;
                 }
 
                 .preview {
+                    cursor: pointer;
                     border-radius: 15px;
                     border-width: 0px;
                     background-color: #99B0ED;
                     color: white;
+                    padding: 0.5em;
                 }
 
                 .send__code {
@@ -106,6 +110,15 @@
                     border-width: 0px;
                     background-color: #B5E1AE;
                     color: white;
+                    padding: 0.5em;
+                }
+
+                .preview:hover, .upload__file:hover {
+                    background-color: #567ff0;
+                }
+
+                .send__code:hover {
+                    background-color: #ECA587;
                 }
             }
         }
@@ -113,6 +126,7 @@
         .code__preview {
             width: 100%;
             height: 300px;
+            border-radius: 15px;
         }
 
         .info {
@@ -125,13 +139,15 @@
                 background-color: #B5E1AE;
                 text-align: center;
                 width: 20%;
+                color: white;
             }
 
             .description {
                 border-radius: 15px;
                 background-color: #EFEFEF;
-                text-align: center;
+                padding: 15px;
                 height: 275px;
+                font-size: x-large;
             }
         }
     }

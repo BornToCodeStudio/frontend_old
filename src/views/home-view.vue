@@ -118,6 +118,7 @@ export default {
       gap: 10px;
 
       #search__bar {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
         width: 60%;
         height: 44px;
         border-radius: 15px;
@@ -127,6 +128,7 @@ export default {
       }
 
       #create__task {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
         width: 15%;
         height: 40px;
         margin-left: 50%;
@@ -169,11 +171,11 @@ export default {
 
 
           #filter__new , #filter__solutions, #filter__likes{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
             background-color: #A0C6F8;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
-            transition: 0.5s;
           }
 
           #filter__new:hover, #filter__solutions:hover, #filter__likes:hover{
@@ -182,6 +184,7 @@ export default {
         }
 
         #tasks {
+          font-family:Verdana, Geneva, Tahoma, sans-serif;
           display: flex;
           justify-content: center;
           text-align: center;
@@ -203,11 +206,11 @@ export default {
           width: 20%;
 
           #filter__html , #filter__css, #filter__js{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
             background-color: #A0C6F8;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
-            transition: 0.5s;
           }
           #filter__html:hover , #filter__css:hover, #filter__js:hover{
             background-color: #567ff0;
