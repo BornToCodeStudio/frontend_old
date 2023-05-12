@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="`Task/${task.taskId}`">
+    <router-link :to="`Task/${task.taskId}`" class="task">
         <div class="home__tasks">
             <div class="left__part">
                 <img :src="task.previewimage" ref='taskImg' alt="unload" class="image__preview">
@@ -28,62 +28,80 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .home__tasks {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        background-color: #EFEFEF;
-        border-radius: 15px;
-        width: 100%;
-        gap: 10px;
+    .task{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        text-decoration: none;
+        cursor:pointer;
+        color: inherit;
 
-        .left__part {
-            margin: 10px;
+        .home__tasks {
             display: flex;
-            flex-direction: column;
-            justify-content: space-around;
+            flex-direction: row;
+            justify-content: space-evenly;
+            background-color: #EFEFEF;
+            border-radius: 15px;
+            width: 600px;
             gap: 10px;
 
-            .image__preview {
-                width: 186px;
-                height: 186px;
-                border-radius: 15px;
-                pointer-events: none;
-            }
-
-            .author {
-                text-align: center;
-                background-color: #8D939F;
-                border-radius: 15px;
-                height: 46px;
-            }
-
-            .is__tried {
-                text-align: center;
-                background-color: #A8C9F3;
-                border-radius: 15px;
-                height: 30px;
-            }
-        }
-
-        .right__part {
-            margin: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 70%;
-
-            .task__name {
+            .left__part {
+                margin: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
                 gap: 10px;
-                background-color: #D9D9D9;
-                border-radius: 15px;
-                height: 15%;
+
+                .image__preview {
+                    width: 186px;
+                    height: 186px;
+                    border-radius: 15px;
+                    pointer-events: none;
+                }
+
+                .author {
+                    color: white;
+                    text-align: center;
+                    background-color: #8D939F;
+                    border-radius: 50px;
+                    padding: 0.5em;
+                    font-weight: normal;
+                    font-size: large;
+                }
+
+                .is__tried {
+                    text-align: center;
+                    background-color: #A8C9F3;
+                    border-radius: 20px;
+                    padding: 0.2em;
+                    font-weight: bold;
+                    font-size: large;
+                }
             }
 
-            .task__description {
-                background-color: #D9D9D9;
-                border-radius: 15px;
-                height: 100%;
+            .right__part {
+                margin: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 70%;
+
+                .task__name {
+                    padding: 10px;
+                    gap: 10px;
+                    background-color: #D9D9D9;
+                    border-radius: 15px;
+                    height: 15%;
+                    font-weight: bold;
+                    font-size: large;
+                }
+
+                .task__description {
+                    padding: 10px;
+                    background-color: #D9D9D9;
+                    border-radius: 15px;
+                    height: 100%;
+                    font-weight: normal;
+                    font-size: large;
+                }
             }
         }
     }

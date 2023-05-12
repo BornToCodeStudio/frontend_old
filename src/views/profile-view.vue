@@ -13,7 +13,7 @@
                 <button id="subscribe__button">Subscribe</button>
 
                 <input type="file" ref="file" @change="selectFile()">
-                <button class="Send__photo" @click="sendFile()">Отправить фото</button>
+                <button class="send__photo" @click="sendFile()">Send photo</button>
             </div>
             <div id="profile__stats">
                 <StatsItem text="Likes" :value="likes"/>
@@ -197,6 +197,7 @@ export default{
         background-color: #EFEFEF;
         border-radius: 45px;
         border-color: #1477F8;
+        
     }
 
     .profile__info {
@@ -234,15 +235,12 @@ export default{
     }
 
     #subscribe__button {
+        cursor: pointer;
         text-align: center;
         background-color: #99B0ED;
         border-radius: 20px;
         border-width: 0px;
-        transition: 0.5s;
-    }
-
-    #subscribe__button:hover{
-        background-color: #1477F8;;
+        padding: 0.5em;
     }
 
     #profile__stats {
@@ -271,12 +269,12 @@ export default{
     }
 
     #completed-tasks__button {
+        cursor: pointer;
         border-radius: 30px;
         border-width: 0px;
         background-color: #AFCFF9;
         width: 45%;
         height: 55px;
-        transition: 0.5s;
         
         @media (max-width: 800px) {
             width: 110px;
@@ -284,18 +282,17 @@ export default{
     }
 
     #created-tasks__button {
+        cursor: pointer;
         border-radius: 30px;
         border-width: 0px;
         background-color: #AFCFF9;
         width: 45%;
         height: 55px;
-        transition: 0.5s;
 
         @media (max-width: 800px) {
             width: 110px;
         }
     }
-
 
     .profile__image {
         width: 100px;
@@ -324,18 +321,28 @@ export default{
         flex-wrap: wrap;
     }
 
-    .Send__photo{
+    .send__photo{
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         border: 2px solid black;
-        border-style: ridge;
+        border-width: 0;
+        padding: 0.5em;
+        background-color: #99B0ED;
         border-radius: 15px;
         text-align: center;
-        transition: 0.5s;
     }
 
-    #completed-tasks__button:hover, #created-tasks__button:hover{
-        background-color: #1477F8;
+    input::file-selector-button {
+        cursor: pointer;
+        font-weight: bold;
+        padding: 0.5em;
+        border: thin solid dodgerblue;
+        border-radius: 15px;
+    }
+
+    input::file-selector-button:hover, #subscribe__button:hover, #completed-tasks__button:hover, #created-tasks__button:hover, .send__photo:hover{
+        background-color: #567ff0;
     }
 
 </style>

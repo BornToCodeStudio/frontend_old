@@ -67,49 +67,52 @@ export default {
     }
 
     #home__button {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        cursor: pointer;
         border-radius: 30px;
         border-width: 0px;
         width: 200px;
         height: 50px;
-        transition: 0.5s;
     }
 
     #sign-up__button {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        cursor: pointer;
         border-radius: 15px;
         border-width: 0px;
         width: 70px;
         background-color: #A0C6F8;
         text-align: center;
-        transition: 0.5s;
     }
 
     #sign-in__button {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        cursor: pointer;
         border-radius: 15px;
         border-width: 0px;
         width: 70px;
         background-color: #A0C6F8;
         text-align: center;
-        transition: 0.5s;
-    }
-
-    #sign-up__button:hover, #sign-in__button:hover, #notifications__button:hover{
-      background-color: #567ff0;
     }
 
     #profile__button {
+        cursor: pointer;
         border-radius: 15px;
         border-width: 0px;
         height: 50px;
         width: 50px;
-        transition: 0.5s;
     }
 
     #notifications__button {
+        cursor: pointer;
         border-radius: 10px;
         border-width: 0px;
         height: 50px;
         width: 30px;
         background-color: #A0C6F8;
-        transition: 0.5s;
+    }
+
+    #home__button:hover, #profile__button:hover,#sign-up__button:hover, #sign-in__button:hover, #notifications__button:hover{
+      background-color: #567ff0;
     }
 </style>
