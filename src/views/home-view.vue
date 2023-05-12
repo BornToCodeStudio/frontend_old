@@ -49,13 +49,7 @@ export default {
         {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
       }
   },
-  mounted() {
-    this.test();
-  },
   methods: {
-      test() {
-        this.$store.state.homeTasks = this.tasks;
-      },
       getTasks() {
         let i = 0;
         let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;
@@ -67,7 +61,7 @@ export default {
               i++;
             arr.push(item);
         });
-
+      
         return arr;
       },        
       calculatePages(length) {

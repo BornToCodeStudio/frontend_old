@@ -38,17 +38,16 @@ export default{
                 }
 
                 let dto = {
-                    login: login,
-                    password: password
+                    Name: login,
+                    Password: password
                 };
 
                 await axios({
                     method: 'post',
-                    url: process.env.VUE_APP_API_URL,
-                    responseType: 'json',
+                    url: process.env.VUE_APP_API_URL + "/users/signUp",
                     data: dto
                 }).then((response) => response).catch((error) => {
-                    alert("Ошибка при создании профиля. " + error.response.data);
+                    alert("Ошибка при создании аккаунта. " + error.response.data);
                 });
             } catch (error) {
                 console.log(error);
