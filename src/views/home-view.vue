@@ -44,9 +44,21 @@ export default {
 },
   data() {
       return {
-        tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1, },
-        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 25},
-        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
+        tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3}],
       }
   },
   mounted() {
@@ -60,7 +72,9 @@ export default {
         let i = 0;
         let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;
         let arr = [];
-        this.tasks.forEach(function(item) {
+        if (this.$store.state.endIndex == 0)
+        {
+          this.tasks.forEach(function(item) {
             if (i == maxI)
               return arr;
             else
@@ -68,8 +82,16 @@ export default {
             arr.push(item);
         });
 
-        return arr;
-      },        
+          return arr;
+        }
+
+        else {
+          arr.push(this.tasks[this.$store.state.startIndex]);
+          arr.push(this.tasks[this.$store.state.endIndex]);
+
+          return arr
+        }
+      },     
       calculatePages(length) {
         return length != 0 ? Math.ceil(length / 2) : 0;
       },
@@ -134,7 +156,7 @@ export default {
         margin-left: 50%;
         border-radius: 20px;
         border-width: 0px;
-        background-color: #9EB4EE;
+        background-color: #ECF4FE;
       }
 
       #create__task:hover{

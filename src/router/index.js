@@ -9,7 +9,7 @@ import TaskPage from '../views/task-view.vue'
 
 const routes = [ 
     {
-        path: '/:page?',
+        path: '/',
         name: "Home",
         component: Home
     },
