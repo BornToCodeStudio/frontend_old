@@ -81,7 +81,8 @@ export default {
         border-radius: 15px;
         border-width: 0px;
         width: 70px;
-        background-color: #A0C6F8;
+        background-color: #FF570C;
+        opacity: 80%;
         text-align: center;
     }
 
@@ -91,7 +92,8 @@ export default {
         border-radius: 15px;
         border-width: 0px;
         width: 70px;
-        background-color: #A0C6F8;
+        background-color: #FF570C;
+        opacity: 80%;
         text-align: center;
     }
 
@@ -109,10 +111,11 @@ export default {
         border-width: 0px;
         height: 50px;
         width: 30px;
-        background-color: #A0C6F8;
+        background-color: #FF570C;
+        opacity: 80%;
     }
 
     #home__button:hover, #profile__button:hover,#sign-up__button:hover, #sign-in__button:hover, #notifications__button:hover{
-      background-color: #567ff0;
+      background-color: #d45013;
     }
 </style>

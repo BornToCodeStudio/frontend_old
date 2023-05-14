@@ -9,7 +9,7 @@
             <button class="submit" type="submit" @click="signIn()">Войти</button>
         </div>
         <router-link to="/SignUp" class="sign__up">
-            <span >Нету аккаунта? Зарегистрируйтесь</span>
+            <span class="link__in__signup">Нету аккаунта? Зарегистрируйтесь</span>
         </router-link>
     </main>
 </template>
@@ -61,11 +61,11 @@ main {
 
     .main__text {
         font-family:Verdana, Geneva, Tahoma, sans-serif;
-        color: #AFCFF9;
+        color: #FF570C;
     }
 
     .sign__up {
-        color: #AFCFF9;
+        color: #FF570C;
         text-decoration: none;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
     }
@@ -89,7 +89,7 @@ main {
             width: 80%;
             background-color: #B9BABC;
             text-align: center;
-            color: #FF570C;
+            color: rgb(0, 0, 0);
             font-weight: bold;
             font-size: medium;
         }

@@ -13,7 +13,7 @@
         </div>
 
         <div class="info">
-            <span class="result">result</span>
+            <spen class="result">result</spen>
             <span class="description">{{ task().description }}</span>
             <div class="comments">
 
@@ -91,7 +91,8 @@
                 .upload__file {
                     border-radius: 15px;
                     border-width: 0px;
-                    background-color: #99B0ED;
+                    background-color: #FF570C;
+                    opacity: 80%;
                     color: white;
                     padding: 0.5em;
                 }
@@ -100,7 +101,8 @@
                     cursor: pointer;
                     border-radius: 15px;
                     border-width: 0px;
-                    background-color: #99B0ED;
+                    background-color: #FF570C;
+                    opacity: 80%;
                     color: white;
                     padding: 0.5em;
                 }
@@ -114,7 +116,7 @@
                 }
 
                 .preview:hover, .upload__file:hover {
-                    background-color: #567ff0;
+                    background-color: #d45013;
                 }
 
                 .send__code:hover {
@@ -141,6 +143,10 @@
                 width: 20%;
                 color: white;
             }
+
+            .result:hover{
+                    background-color: #ECA587;
+                }
 
             .description {
                 border-radius: 15px;

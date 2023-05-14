@@ -156,11 +156,12 @@ export default {
         margin-left: 50%;
         border-radius: 20px;
         border-width: 0px;
-        background-color: #ECF4FE;
+        background-color: #FF570C;
+        opacity: 80%;
       }
 
       #create__task:hover{
-        background-color: #567ff0;
+        background-color: #d45013;
       }
     }
 
@@ -194,14 +195,15 @@ export default {
 
           #filter__new , #filter__solutions, #filter__likes{
             font-family:Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #A0C6F8;
+            background-color: #FF570C;
+            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
           }
 
           #filter__new:hover, #filter__solutions:hover, #filter__likes:hover{
-            background-color:#567ff0;
+            background-color:#d45013;
           }
         }
 
@@ -229,13 +231,14 @@ export default {
 
           #filter__html , #filter__css, #filter__js{
             font-family:Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #A0C6F8;
+            background-color: #FF570C;
+            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
           }
           #filter__html:hover , #filter__css:hover, #filter__js:hover{
-            background-color: #567ff0;
+            background-color: #d45013;
           }
         }
       }
