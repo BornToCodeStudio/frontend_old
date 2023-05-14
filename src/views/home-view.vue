@@ -2,17 +2,17 @@
     <main>
       <div class="main__upper">
         <input type="text" id="search__bar" placeholder="Search..">
-        <button id="create__task">Create Task</button>
+        <button id="create__task">Создать задачу</button>
       </div>
       <hr>
       <div class="main__body">
         <div class="filters">
           <div class="left__filters">
-            <button id="filter__new">New</button>
-            <button id="filter__solutions">Solutions</button>
-            <button id="filter__likes">Likes</button>
+            <button id="filter__new">Новое</button>
+            <button id="filter__solutions">Решения</button>
+            <button id="filter__likes">Лайки</button>
           </div>
-          <span id="tasks">Tasks</span>
+          <span id="tasks">Задания </span>
           <div class="right__filters">
             <button id="filter__html">HTML</button>
             <button id="filter__css">CSS</button>
@@ -44,9 +44,21 @@ export default {
 },
   data() {
       return {
-        tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1, },
-        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 25},
-        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
+        tasks: [{author: "helicopter123", isTried: false, name: "работа с JSON", description: "aboba", previewimage: previewImageDefault, taskId: 1},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "cowfucker", isTried: true, name: "Hello world!", description: "display the 'Hello world' message at the local page", previewimage: previewImageDefault, taskId: 2},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3},
+        {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 3}],
       }
   },
   mounted() {
@@ -76,16 +88,25 @@ export default {
         let i = 0;
         let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;
         let arr = [];
-        this.tasks.forEach(function(item) {
-            if (i == maxI)
-              return arr;
-            else
-              i++;
-            arr.push(item);
-        });
-      
-        return arr;
-      },        
+        if (this.$store.state.endIndex == 0)
+        {
+          this.tasks.forEach(function(item) {
+              if (i == maxI)
+                return arr;
+              else
+                i++;
+              arr.push(item);
+          });
+
+          return arr;
+        }
+        else {
+          arr.push(this.tasks[this.$store.state.startIndex]);
+          arr.push(this.tasks[this.$store.state.endIndex]);
+
+          return arr
+        }
+      },     
       calculatePages(length) {
         return length != 0 ? Math.ceil(length / 2) : 0;
       },
@@ -150,11 +171,12 @@ export default {
         margin-left: 50%;
         border-radius: 20px;
         border-width: 0px;
-        background-color: #9EB4EE;
+        background-color: #FF570C;
+        opacity: 80%;
       }
 
       #create__task:hover{
-        background-color: #567ff0;
+        background-color: #d45013;
       }
     }
 
@@ -188,14 +210,15 @@ export default {
 
           #filter__new , #filter__solutions, #filter__likes{
             font-family:Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #A0C6F8;
+            background-color: #FF570C;
+            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
           }
 
           #filter__new:hover, #filter__solutions:hover, #filter__likes:hover{
-            background-color:#567ff0;
+            background-color:#d45013;
           }
         }
 
@@ -223,13 +246,14 @@ export default {
 
           #filter__html , #filter__css, #filter__js{
             font-family:Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #A0C6F8;
+            background-color: #FF570C;
+            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
           }
           #filter__html:hover , #filter__css:hover, #filter__js:hover{
-            background-color: #567ff0;
+            background-color: #d45013;
           }
         }
       }

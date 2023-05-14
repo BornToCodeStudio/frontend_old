@@ -6,26 +6,26 @@
                 <img :src="avatarUrl" ref='profileImg' alt="unload" class="profile__image">
 
                 <span id="profile__nickname">{{ nickname }}</span>
-                <span id="profile__aboutme">About me:</span>
+                <span id="profile__aboutme">О себе:</span>
 
                 <textarea id="profile__aboutme-text" style="resize: none;" v-model="aboutme"></textarea>
 
-                <button id="subscribe__button">Subscribe</button>
+                <button id="subscribe__button">Подписаться</button>
 
                 <input type="file" ref="file" @change="selectFile()">
-                <button class="send__photo" @click="sendFile()">Send photo</button>
+                <button class="send__photo" @click="sendFile()">Отправить фото</button>
             </div>
             <div id="profile__stats">
-                <StatsItem text="Likes" :value="likes"/>
-                <StatsItem text="Subscribers" :value="subscribers"/>
-                <StatsItem text="Subscriptions" :value="subscriptions"/>
-                <StatsItem text="Views" :value="views"/>
+                <StatsItem text="Лайков" :value="likes"/>
+                <StatsItem text="Подписчиков" :value="subscribers"/>
+                <StatsItem text="Подписок" :value="subscriptions"/>
+                <StatsItem text="Просмотов" :value="views"/>
             </div>
         </div>
         <div class="tasks">
             <div class="tasks__buttons">
-                <button id="completed-tasks__button">Completed Tasks</button>
-                <button id="created-tasks__button" @click="loadTasks()">Created Tasks ({{ tasksCount }} шт.)</button>
+                <button id="completed-tasks__button">Завершенные задания</button>
+                <button id="created-tasks__button" @click="loadTasks()">Соданные задания({{ tasksCount }} шт.)</button>
             </div>
             <div class="tasks__items">
                 <div id="task-item">
@@ -210,7 +210,8 @@ export default{
 
     #profile__nickname {
         text-align: center;
-        background-color: #99B0ED;
+        background-color: #FF570C;
+        opacity: 80%;
         border-radius: 15px;
         width: 92px;
         height: 20px;
@@ -237,7 +238,8 @@ export default{
     #subscribe__button {
         cursor: pointer;
         text-align: center;
-        background-color: #99B0ED;
+        background-color: #FF570C;
+        opacity: 80%;
         border-radius: 20px;
         border-width: 0px;
         padding: 0.5em;
@@ -272,7 +274,8 @@ export default{
         cursor: pointer;
         border-radius: 30px;
         border-width: 0px;
-        background-color: #AFCFF9;
+        background-color: #FF570C;
+        opacity: 80%;
         width: 45%;
         height: 55px;
         
@@ -285,7 +288,8 @@ export default{
         cursor: pointer;
         border-radius: 30px;
         border-width: 0px;
-        background-color: #AFCFF9;
+        background-color: #FF570C;
+        opacity: 80%;
         width: 45%;
         height: 55px;
 
@@ -328,7 +332,8 @@ export default{
         border: 2px solid black;
         border-width: 0;
         padding: 0.5em;
-        background-color: #99B0ED;
+        background-color: #FF570C;
+        opacity: 80%;
         border-radius: 15px;
         text-align: center;
     }
@@ -342,7 +347,7 @@ export default{
     }
 
     input::file-selector-button:hover, #subscribe__button:hover, #completed-tasks__button:hover, #created-tasks__button:hover, .send__photo:hover{
-        background-color: #567ff0;
+        background-color: #d45013;
     }
 
 </style>

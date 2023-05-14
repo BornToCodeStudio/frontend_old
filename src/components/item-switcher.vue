@@ -26,20 +26,22 @@ export default {
             }
 
             return pages;
-        }
+        },
     }
 }
 </script>
 
 <style lang="scss" scoped>
     .pages__holder {
-        width: 30%;
-        height: 68px;
+        padding: 5px;
+        width: 25%;
+        height: 45px;
         border-radius: 10px;
         border: 1px dashed #7AA7E2;
         background-color: #ECF4FE;
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
         gap: 10px;
     }
 </style>

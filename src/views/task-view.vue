@@ -5,15 +5,15 @@
                 <textarea class="text__code" ref="editor"></textarea>
             </div>
             <div class="buttons">
-                <button class="upload__file">Upload file</button>
-                <button class="preview" @click="preview()">Preview</button>
-                <button class="send__code">Send code</button>
+                <button class="upload__file">Загрузить файл</button>
+                <button class="preview" @click="preview()">Предпросмотр</button>
+                <button class="send__code">Отправить на проверку</button>
             </div>
             <iframe class="code__preview" :srcdoc="text"/>
         </div>
 
         <div class="info">
-            <span class="result">result</span>
+            <spen class="result">результат</spen>
             <span class="description">{{ task().description }}</span>
             <div class="comments">
 
@@ -91,7 +91,8 @@
                 .upload__file {
                     border-radius: 15px;
                     border-width: 0px;
-                    background-color: #99B0ED;
+                    background-color: #FF570C;
+                    opacity: 80%;
                     color: white;
                     padding: 0.5em;
                 }
@@ -100,7 +101,8 @@
                     cursor: pointer;
                     border-radius: 15px;
                     border-width: 0px;
-                    background-color: #99B0ED;
+                    background-color: #FF570C;
+                    opacity: 80%;
                     color: white;
                     padding: 0.5em;
                 }
@@ -114,7 +116,7 @@
                 }
 
                 .preview:hover, .upload__file:hover {
-                    background-color: #567ff0;
+                    background-color: #d45013;
                 }
 
                 .send__code:hover {
@@ -135,12 +137,17 @@
             gap: 15px;
 
             .result {
+                display: flex;
+                flex-direction: column;
                 border-radius: 15px;
                 background-color: #B5E1AE;
                 text-align: center;
-                width: 20%;
                 color: white;
             }
+
+            .result:hover{
+                    background-color: #ECA587;
+                }
 
             .description {
                 border-radius: 15px;

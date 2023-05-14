@@ -2,23 +2,23 @@
   <nav class="nav__bar">
     <div class="nav__bar-left">
         <router-link to="/">
-            <button id="home__button">Home</button>
+            <button id="home__button">Главная</button>
         </router-link>
     </div>
 
     <div class="nav__bar-right">
       <div class="auth__block" v-if="!this.$store.state.authorized">
         <router-link to="/SignUp">
-          <button id="sign-up__button">Sign Up</button>
+          <button id="sign-up__button">Регистрация</button>
         </router-link>
 
         <router-link to="/SignIn">
-          <button id="sign-in__button">Sign In</button>
+          <button id="sign-in__button">Войти</button>
         </router-link>
       </div>
 
       <router-link to="/Profile">
-        <button id="profile__button">Profile</button>
+        <button id="profile__button">Профиль</button>
       </router-link>
 
       <button id="notifications__button"></button>
@@ -67,40 +67,51 @@ export default {
     }
 
     #home__button {
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-        cursor: pointer;
-        border-radius: 30px;
-        border-width: 0px;
-        width: 200px;
-        height: 50px;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      cursor: pointer;
+      border-radius: 30px;
+      border-width: 0px;
+      width: 200px;
+      height: 50px;
     }
 
     #sign-up__button {
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-        cursor: pointer;
-        border-radius: 15px;
-        border-width: 0px;
-        width: 70px;
-        background-color: #A0C6F8;
-        text-align: center;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      cursor: pointer;
+      border-radius: 15px;
+      border-width: 0px;
+      background-color: #FF570C;
+      opacity: 80%;
+      text-align: center;
     }
 
     #sign-in__button {
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-        cursor: pointer;
-        border-radius: 15px;
-        border-width: 0px;
-        width: 70px;
-        background-color: #A0C6F8;
-        text-align: center;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      cursor: pointer;
+      border-radius: 15px;
+      border-width: 0px;
+      width: 95px;
+      background-color: #FF570C;
+      opacity: 80%;
+      padding-left: 28px;
+
     }
 
     #profile__button {
-        cursor: pointer;
-        border-radius: 15px;
-        border-width: 0px;
-        height: 50px;
-        width: 50px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      border-radius: 15px;
+      border-width: 0px;
+      height: 50px;
+      padding-top: 14px;
+      text-align: center;
     }
 
     #notifications__button {
@@ -109,10 +120,11 @@ export default {
         border-width: 0px;
         height: 50px;
         width: 30px;
-        background-color: #A0C6F8;
+        background-color: #FF570C;
+        opacity: 80%;
     }
 
     #home__button:hover, #profile__button:hover,#sign-up__button:hover, #sign-in__button:hover, #notifications__button:hover{
-      background-color: #567ff0;
+      background-color: #d45013;
     }
 </style>

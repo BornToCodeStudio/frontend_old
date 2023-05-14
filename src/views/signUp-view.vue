@@ -62,7 +62,7 @@ export default{
     h1 {
         text-align: center;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
-        color: #AFCFF9;        
+        color: #FF570C;
     }
 
     .block__registration{
