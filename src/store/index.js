@@ -2,7 +2,8 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    homeTasks: []
+    homeTasks: [],
+    authorized: false
   },
   getters: {
     getTask: (state) => (id) => {

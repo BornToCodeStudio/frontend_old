@@ -7,7 +7,7 @@
     </div>
 
     <div class="nav__bar-right">
-      <div class="auth__block">
+      <div class="auth__block" v-if="!this.$store.state.authorized">
         <router-link to="/SignUp">
           <button id="sign-up__button">Sign Up</button>
         </router-link>

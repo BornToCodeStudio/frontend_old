@@ -49,7 +49,29 @@ export default {
         {author: "Bob", isTried: true, name: "работа с JSON1", description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».", previewimage: previewImageDefault, taskId: 5}],
       }
   },
+  mounted() {
+    this.verifySignIn();
+  },
   methods: {
+      async verifySignIn() {
+        try {
+          await axios({
+            method: "post",
+            url: process.env.VUE_APP_API_URL + "/users/verifySignIn",
+            withCredentials: true
+          }).then((response) => {
+            if (response.status == 200)
+              this.$store.state.authorized = true;
+            else
+              this.$store.state.authorized = false;
+          });
+        }
+        catch (error) {
+          this.$store.state.authorized = false;
+
+          console.log(error);
+        }
+      },
       getTasks() {
         let i = 0;
         let maxI = this.tasks.length >= 2 ? 2 : this.tasks.length;

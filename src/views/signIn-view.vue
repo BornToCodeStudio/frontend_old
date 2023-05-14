@@ -26,21 +26,21 @@ export default {
         async signIn() {
             try {
                 let dto = {
-                    login: this.$refs.login.value,
-                    password: this.$refs.password.value
+                    Name: this.$refs.login.value,
+                    Password: this.$refs.password.value
                 };
 
                 let data = await axios({
                     method: 'post',
-                    url: process.env.VUE_APP_API_URL,
-                    responseType: 'json',
-                    data: dto
+                    url: process.env.VUE_APP_API_URL + "/users/signIn",
+                    data: dto,
+                    withCredentials: true
                 }).then((response) => response).catch((error) => {
                     alert("Не удалось авторизоваться. " + error.response.data);
                 });
-
+                
                 if (data.status == 200)
-                    alert("Вы успешно авторизованы")
+                    this.$store.state.authorized = true;
                 else if (data.status == 404)
                     alert("Такого профиля не существует")
             } catch (error) {
