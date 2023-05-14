@@ -137,10 +137,11 @@
             gap: 15px;
 
             .result {
+                display: flex;
+                flex-direction: column;
                 border-radius: 15px;
                 background-color: #B5E1AE;
                 text-align: center;
-                width: 20%;
                 color: white;
             }
 
