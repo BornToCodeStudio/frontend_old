@@ -5,15 +5,15 @@
                 <textarea class="text__code" ref="editor"></textarea>
             </div>
             <div class="buttons">
-                <button class="upload__file">Upload file</button>
-                <button class="preview" @click="preview()">Preview</button>
-                <button class="send__code">Send code</button>
+                <button class="upload__file">Загрузить файл</button>
+                <button class="preview" @click="preview()">Предпросмотр</button>
+                <button class="send__code">Отправить на проверку</button>
             </div>
             <iframe class="code__preview" :srcdoc="text"/>
         </div>
 
         <div class="info">
-            <spen class="result">result</spen>
+            <spen class="result">результат</spen>
             <span class="description">{{ task().description }}</span>
             <div class="comments">
 

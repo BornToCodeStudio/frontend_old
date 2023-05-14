@@ -2,17 +2,17 @@
     <main>
       <div class="main__upper">
         <input type="text" id="search__bar" placeholder="Search..">
-        <button id="create__task">Create Task</button>
+        <button id="create__task">Создать задачу</button>
       </div>
       <hr>
       <div class="main__body">
         <div class="filters">
           <div class="left__filters">
-            <button id="filter__new">New</button>
-            <button id="filter__solutions">Solutions</button>
-            <button id="filter__likes">Likes</button>
+            <button id="filter__new">Новое</button>
+            <button id="filter__solutions">Решения</button>
+            <button id="filter__likes">Лайки</button>
           </div>
-          <span id="tasks">Tasks</span>
+          <span id="tasks">Задания </span>
           <div class="right__filters">
             <button id="filter__html">HTML</button>
             <button id="filter__css">CSS</button>
