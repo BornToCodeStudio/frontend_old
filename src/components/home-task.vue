@@ -3,12 +3,12 @@
         <div class="home__tasks">
             <div class="left__part">
                 <img :src="task.previewimage" ref='taskImg' alt="unload" class="image__preview">
-                <span class="author">{{task.author}}</span>
-                <span class="is__tried">{{task.isTried}}</span>
+                <span class="author">{{ task.author }}</span>
+                <span class="is__tried">{{ task.isTried }}</span>
             </div>
             <div class="right__part">
-                <span class="task__name">{{task.name}}</span>
-                <span class="task__description">{{task.description}}</span>
+                <span class="task__name">{{ task.name }}</span>
+                <span class="task__description">{{ task.description }}</span>
             </div>
         </div>
     </router-link>

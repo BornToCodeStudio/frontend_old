@@ -13,7 +13,7 @@
         </div>
 
         <div class="info">
-            <spen class="result">результат</spen>
+            <span class="result">Результат</span>
             <span class="description">{{ task().description }}</span>
             <div class="comments">
 
@@ -35,8 +35,7 @@
         },
         data() {
             return {
-                text: "",
-                description: "Создайте страницу, которая отобразит сообщение «Я JavaScript!».",
+                text: '',
                 codeMirror: null
             }
         },
@@ -50,7 +49,7 @@
                 return task;
             },
             preview() {
-                let text = this.codeMirror.display.maxLine.text;
+                let text = this.codeMirror.getValue();
                 this.text = text;
             }
         },

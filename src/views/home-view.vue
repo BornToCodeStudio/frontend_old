@@ -62,6 +62,8 @@ export default {
       }
   },
   mounted() {
+    this.$store.state.homeTasks = this.tasks;
+
     this.verifySignIn();
   },
   methods: {
