@@ -20,7 +20,7 @@
 
         <div class="info">
             <span class="result">Результат</span>
-            <span class="description">{{ task().description }}</span>
+            <span class="description">{{ task().fullDescription }}</span>
             <div class="comments">
 
             </div>
