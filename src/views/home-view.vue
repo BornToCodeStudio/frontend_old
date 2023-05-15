@@ -86,7 +86,7 @@ export default {
 
             return [];
         });
-        this.tasks = data;
+        this.$store.state.homeTasks = data;
       },
       getPreview(id) {
         let task = this.tasks.find(t => t.id == id);
