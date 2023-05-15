@@ -39,7 +39,7 @@
 </template>
     
 <script>
-import axios from 'axios';
+import axios from '../axios/index.js';
 import SomeTask from '../components/some-task.vue';
 import StatsItem from '../components/stats-item.vue';
 import profileImage from '../assets/default_avatar.png';
@@ -65,9 +65,11 @@ export default{
     },
     methods: {
         async loadProfile() {
+            this.$store.state.loader = true;
+
             let data = await axios({
                 method: 'get',
-                url: process.env.VUE_APP_API_URL + "/users/getProfile/" + this.$route.params.userId,
+                url: "/users/getProfile/" + this.$route.params.userId,
                 withCredentials: true
             }).then((response) => {
                 if (response.status == 200)
@@ -75,6 +77,8 @@ export default{
             });
 
             this.nickname = data.name;
+
+            this.$store.state.loader = false;
         },
         async loadTasks() {
             let data = await axios({

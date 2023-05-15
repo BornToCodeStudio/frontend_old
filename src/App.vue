@@ -1,14 +1,17 @@
 <template>
+  <spinner-loader v-show="$store.state.loader"/>
   <nav-bar/>
   <router-view></router-view>
 </template>
 
 <script>
 import NavBar from './components/nav-bar.vue'
+import SpinnerLoader from './components/spinner-loader.vue'
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    SpinnerLoader
   }
 }
 </script>

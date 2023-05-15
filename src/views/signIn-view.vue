@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios/index.js';
 
 export default {
     name: "SignIn",
@@ -30,21 +30,27 @@ export default {
                     Password: this.$refs.password.value
                 };
 
+                this.$store.state.loader = true;
+
                 let data = await axios({
                     method: 'post',
-                    url: process.env.VUE_APP_API_URL + "/users/signIn",
+                    url: "/users/signIn",
                     data: dto,
                     withCredentials: true
                 }).then((response) => response).catch((error) => {
                     alert("Не удалось авторизоваться. " + error.response.data);
+                    this.$store.state.loader = false;
                 });
                 
                 if (data.status == 200)
                     this.$store.state.authorized = true;
                 else if (data.status == 404)
                     alert("Такого профиля не существует")
+
+                this.$store.state.loader = false;
             } catch (error) {
                 console.log(error);
+                this.$store.state.loader = false;
             }
         }
     }

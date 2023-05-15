@@ -29,15 +29,42 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios/index.js';
 
 export default {
   name: "nav-bar",
+  mounted() {
+    this.verifySignIn();
+  },
   methods: {
+    async verifySignIn() {
+      try {
+        this.$store.state.loader = true;
+
+        await axios({
+          method: "post",
+          url: "/users/verifySignIn",
+          withCredentials: true
+        }).then((response) => {
+          if (response.status == 200)
+            this.$store.state.authorized = true;
+          else
+            this.$store.state.authorized = false;
+        });
+
+        this.$store.state.loader = false;
+      }
+      catch (error) {
+        this.$store.state.authorized = false;
+        this.$store.state.loader = false;
+
+        console.log(error);
+      }
+    },
     async goToSelfProfile() {
       let data = await axios({
         method: "get",
-        url: process.env.VUE_APP_API_URL + "/users/selfProfile",
+        url: "/users/selfProfile",
         withCredentials: true
       }).then((response) => {
         if (response.status == 200)

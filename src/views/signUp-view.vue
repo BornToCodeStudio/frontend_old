@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios/index.js';
 
 export default{
     name: "SignUp",
@@ -36,15 +36,22 @@ export default{
                     Password: password
                 };
 
+                this.$store.state.loader = true;
+
                 await axios({
                     method: 'post',
-                    url: process.env.VUE_APP_API_URL + "/users/signUp",
+                    url: "/users/signUp",
                     data: dto
-                }).then((response) => response).catch((error) => {
+                }).then((response) => response).finally(() => {
+                    alert("Вы успешно создали аккаунт. Теперь авторизуйтесь");
+                }).catch((error) => {
                     alert("Ошибка при создании аккаунта. " + error.response.data);
                 });
+
+                this.$store.state.loader = false;
             } catch (error) {
                 console.log(error);
+                this.$store.state.loader = false;
             }
         }
     }

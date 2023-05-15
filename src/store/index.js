@@ -6,6 +6,7 @@ export default createStore({
     authorized: false,
     startIndex: 0,
     endIndex: 0,
+    loader: false
   },
   getters: {
     getTask: (state) => (id) => {
