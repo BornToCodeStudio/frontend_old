@@ -22,7 +22,7 @@
         <div class="filtered__tasks">
            <HomeTask v-bind:key="index" v-for="(task, index) in getTasks()" :task="task"/>
         </div>
-        <div v-show="tasks.length > 0" class="pages">
+        <div v-show="tasks.length != 0" class="pages">
           <ItemSwitcher :pagesCount="calculatePages(tasks.length)"/>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default {
       async loadTasks() {
         let data = await axios({
             method: 'get',
-            url: process.env.VUE_APP_API_URL,
+            url: "/tasks/getAll",
             responseType: 'json'
         }).then(function (response) {
             if (response.status == 200) {
