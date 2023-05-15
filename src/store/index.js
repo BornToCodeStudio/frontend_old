@@ -10,7 +10,7 @@ export default createStore({
   },
   getters: {
     getTask: (state) => (id) => {
-      return state.homeTasks.find(t => t.taskId === id);
+      return state.homeTasks.find(t => t.id === id);
     }
   },
   mutations: {

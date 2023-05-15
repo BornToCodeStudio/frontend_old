@@ -54,7 +54,7 @@
                 let task = this.$store.getters.getTask(id);
                 if (!task)
                     return;
-
+                    
                 return task;
             },
             preview() {
