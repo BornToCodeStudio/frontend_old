@@ -95,6 +95,9 @@ export default {
           
         return task.previewimage;
       }
+  },
+  mounted() {
+    this.loadTasks();
   }
 };
 </script>
