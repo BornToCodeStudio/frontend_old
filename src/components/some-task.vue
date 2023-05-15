@@ -1,5 +1,5 @@
 <template>
-    <button class="task__button">{{ taskname }}</button>
+    <div class="task__button">{{ taskname }}</div>
 </template>
 
 <script>   

@@ -29,7 +29,6 @@ export default {
 
 <style lang="scss" scoped>
     .task{
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
         text-decoration: none;
         cursor:pointer;
         color: inherit;

@@ -1,5 +1,5 @@
 <template>
-        <button @click="changeTasks()" class="number">{{number}}</button>
+    <div @click="changeTasks()" class="number">{{number}}</div>
 </template>
 
 
@@ -25,12 +25,11 @@ export default {
 
 <style lang="scss" scoped>
     .number {
-        align-self: center;
-        width: 80%;
-        height: 80%;
+        width: 42px;
         text-align: center;
         border-radius: 35px;
         background-color: #ECF4FE;
         border: 1px dashed #7AA7E2;
+        line-height: 45px;
     }
 </style>

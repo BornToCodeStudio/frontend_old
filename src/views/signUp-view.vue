@@ -5,7 +5,7 @@
                 <input class="login" type="text" ref="login" placeholder="Логин">
                 <input class="password" type="password" ref="password" placeholder="Пароль">
                 <input class="confirm__password" type="password" ref="confirmPassword" placeholder="Подтверждение пароля">
-                <button class="sign__up" @click="signUp()">Зарегистрироваться</button>
+                <div class="sign__up" @click="signUp()">Зарегистрироваться</div>
             </div> 
     </div>
 </template>
@@ -61,7 +61,6 @@ export default{
 
     h1 {
         text-align: center;
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
         color: #FF570C;
     }
 
@@ -93,11 +92,12 @@ export default{
         border-radius: 15px;
         border-width: 0px;
         height: 36px;
-        width: 40%;;
+        width: 40%;
         background-color: #72C850;
         font-weight: bold;
         font-size: medium;
-        
+        text-align: center;
+        line-height: 36px;
     } 
 
     .sign__up:hover {

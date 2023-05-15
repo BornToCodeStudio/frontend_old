@@ -1,27 +1,27 @@
 <template>
   <nav class="nav__bar">
     <div class="nav__bar-left">
-        <router-link to="/">
-            <button id="home__button">Главная</button>
+        <router-link to="/" class="home__button">
+          <img src="../assets/cowfucker.gif"/>
         </router-link>
     </div>
 
     <div class="nav__bar-right">
       <div class="auth__block" v-if="!this.$store.state.authorized">
-        <router-link to="/SignUp">
-          <button id="sign-up__button">Регистрация</button>
+        <router-link to="/SignUp" class="nav-bar-button">
+          Регистрация
         </router-link>
 
-        <router-link to="/SignIn">
-          <button id="sign-in__button">Войти</button>
+        <router-link to="/SignIn" class="nav-bar-button">
+          Войти
         </router-link>
       </div>
 
-      <router-link to="/Profile">
-        <button id="profile__button">Профиль</button>
-      </router-link>
+      <div class="profile-button" v-show="this.$store.state.authorized" @click="goToSelfProfile()">
+        <img src="../assets/profile-icon.png"/>
+      </div>
 
-      <button id="notifications__button"></button>
+      <div id="notifications__button" v-show="this.$store.state.authorized"></div>
     </div>
   </nav>
 
@@ -29,12 +29,35 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: "nav-bar"
+  name: "nav-bar",
+  methods: {
+    async goToSelfProfile() {
+      let data = await axios({
+        method: "get",
+        url: process.env.VUE_APP_API_URL + "/users/selfProfile",
+        withCredentials: true
+      }).then((response) => {
+        if (response.status == 200)
+          return response.data;
+      });
+
+      if (!data)
+        return;
+
+      this.$router.push("/Profile/" + data);
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+    * {
+      font-family: 'Nunito', sans-serif;
+    }
+
     .nav__bar {
         display: flex;
         flex-direction: row;
@@ -66,41 +89,49 @@ export default {
         height: 1px;
     }
 
-    #home__button {
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    .home__button {
+      text-decoration: none;
+      color: inherit;
       cursor: pointer;
       border-radius: 30px;
       border-width: 0px;
       width: 200px;
       height: 50px;
+
+      img {
+        width: 70px;
+      }
     }
 
-    #sign-up__button {
-      display: flex;
-      flex-direction: row;
-      text-align: center;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    .nav-bar-button {
+      width: 125px;
       cursor: pointer;
       border-radius: 15px;
       border-width: 0px;
-      background-color: #FF570C;
-      opacity: 80%;
+      background-color: #ff7332;
+      text-decoration: none;
+      color: inherit;
+      align-items: center;
       text-align: center;
     }
 
-    #sign-in__button {
+    .profile-button {
       display: flex;
-      flex-direction: row;
-      text-align: center;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
-      cursor: pointer;
+      width: 50px;
+      align-items: center;
       border-radius: 15px;
       border-width: 0px;
-      width: 95px;
-      background-color: #FF570C;
-      opacity: 80%;
-      padding-left: 28px;
+      background-color: #ff7332;
+      cursor: pointer;
 
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 47px;
+        height: 47px;
+        opacity: 40%;
+      }
     }
 
     #profile__button {
@@ -118,13 +149,7 @@ export default {
         cursor: pointer;
         border-radius: 10px;
         border-width: 0px;
-        height: 50px;
         width: 30px;
-        background-color: #FF570C;
-        opacity: 80%;
-    }
-
-    #home__button:hover, #profile__button:hover,#sign-up__button:hover, #sign-in__button:hover, #notifications__button:hover{
-      background-color: #d45013;
+        background-color: #ff7332;
     }
 </style>

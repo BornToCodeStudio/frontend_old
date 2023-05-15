@@ -3,17 +3,17 @@
     <main>    
         <div class="profile__column">
             <div class="profile__info">
-                <img :src="avatarUrl" ref='profileImg' alt="unload" class="profile__image">
+                <img src="../assets/default_avatar.png" ref='profileImg' alt="unload" class="profile__image">
 
                 <span id="profile__nickname">{{ nickname }}</span>
                 <span id="profile__aboutme">О себе:</span>
 
                 <textarea id="profile__aboutme-text" style="resize: none;" v-model="aboutme"></textarea>
 
-                <button id="subscribe__button">Подписаться</button>
+                <div id="subscribe__button">Подписаться</div>
 
                 <input type="file" ref="file" @change="selectFile()">
-                <button class="send__photo" @click="sendFile()">Отправить фото</button>
+                <div class="send__photo" @click="sendFile()">Отправить фото</div>
             </div>
             <div id="profile__stats">
                 <StatsItem text="Лайков" :value="likes"/>
@@ -24,8 +24,8 @@
         </div>
         <div class="tasks">
             <div class="tasks__buttons">
-                <button id="completed-tasks__button">Завершенные задания</button>
-                <button id="created-tasks__button" @click="loadTasks()">Соданные задания({{ tasksCount }} шт.)</button>
+                <div id="completed-tasks__button">Завершенные задания</div>
+                <div id="created-tasks__button" @click="loadTasks()">Созданные задания ({{ tasksCount }} шт.)</div>
             </div>
             <div class="tasks__items">
                 <div id="task-item">
@@ -44,13 +44,12 @@ import SomeTask from '../components/some-task.vue';
 import StatsItem from '../components/stats-item.vue';
 import profileImage from '../assets/default_avatar.png';
 
-
 export default{
     name: "profile-page",
     components: {
-    SomeTask,
-    StatsItem
-},
+        SomeTask,
+        StatsItem
+    },
     data() {
         return {
             tasksCount: 0,
@@ -58,7 +57,6 @@ export default{
             nickname: "user",
             aboutme: "",
             file: "",
-            avatarUrl: '../assets/default_avatar.png',
             likes: "0",
             subscribers: "0",
             subscriptions: "0",
@@ -66,6 +64,18 @@ export default{
         }
     },
     methods: {
+        async loadProfile() {
+            let data = await axios({
+                method: 'get',
+                url: process.env.VUE_APP_API_URL + "/users/getProfile/" + this.$route.params.userId,
+                withCredentials: true
+            }).then((response) => {
+                if (response.status == 200)
+                    return response.data;
+            });
+
+            this.nickname = data.name;
+        },
         async loadTasks() {
             let data = await axios({
                 method: 'get',
@@ -172,8 +182,7 @@ export default{
         }
     },
     mounted() {
-        this.loadTasksCount();
-        this.loadAvatar();
+        this.loadProfile();
     }
 }
 
@@ -278,6 +287,8 @@ export default{
         opacity: 80%;
         width: 45%;
         height: 55px;
+        text-align: center;
+        line-height: 55px;
         
         @media (max-width: 800px) {
             width: 110px;
@@ -292,6 +303,8 @@ export default{
         opacity: 80%;
         width: 45%;
         height: 55px;
+        text-align: center;
+        line-height: 55px;
 
         @media (max-width: 800px) {
             width: 110px;

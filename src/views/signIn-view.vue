@@ -6,7 +6,7 @@
         <div class="sign__in">
             <input class="login" type="text" ref="login" placeholder="Логин">
             <input class="password" type="password" ref="password" placeholder="Пароль">
-            <button class="submit" type="submit" @click="signIn()">Войти</button>
+            <div class="submit" type="submit" @click="signIn()">Войти</div>
         </div>
         <router-link to="/SignUp" class="sign__up">
             <span class="link__in__signup">Нету аккаунта? Зарегистрируйтесь</span>
@@ -60,14 +60,12 @@ main {
 
 
     .main__text {
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
         color: #FF570C;
     }
 
     .sign__up {
         color: #FF570C;
         text-decoration: none;
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
     }
 
     .sign__in {
@@ -79,8 +77,8 @@ main {
         border-radius: 50px;
         align-items: center;
         width: 35%;
-        
-        
+        text-align: center;
+        line-height: 36px;
 
         .login, .password{
             border-radius: 15px;
