@@ -2,7 +2,7 @@
   <nav class="nav__bar">
     <div class="nav__bar-left">
         <router-link to="/" class="home__button">
-          <img src="../assets/cowfucker.gif"/>
+          <span>{{ logo }}</span>
         </router-link>
     </div>
 
@@ -35,6 +35,11 @@ export default {
   name: "nav-bar",
   mounted() {
     this.verifySignIn();
+  },
+  data() {
+    return {
+      logo: "Born To C</>de"
+    }
   },
   methods: {
     async verifySignIn() {
@@ -92,11 +97,22 @@ export default {
         justify-content:space-between;
         padding-left: 15px;
         padding-right: 15px;
+        height: 54px;
 
         .nav__bar-right {
             display: flex;
             gap: 10px;
             flex-direction: row;
+        }
+
+        .nav__bar-left {
+          span {
+            color:#FF570C;
+            font-size: 18pt;
+            font-weight: bold;
+            line-height: 54px;
+            white-space: nowrap;
+          }
         }
     }
 
@@ -112,8 +128,7 @@ export default {
     }
 
     hr {
-        background-color: #A0C6F8;
-        height: 1px;
+      
     }
 
     .home__button {

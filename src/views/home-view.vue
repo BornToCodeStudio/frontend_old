@@ -111,9 +111,8 @@ export default {
     user-select: none;
 
     hr {
-        background-color: #A0C6F8;
-        height: 0.4px;
-        width: 100%;
+      width: 100%;
+      
     }
       
     .main__upper {
