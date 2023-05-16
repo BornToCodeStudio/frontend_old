@@ -1,7 +1,9 @@
 <template>
+<body>
   <spinner-loader v-show="$store.state.loader"/>
   <nav-bar/>
   <router-view></router-view>
+</body>
 </template>
 
 <script>
@@ -21,5 +23,10 @@ export default {
 
   * {
     font-family: 'Nunito', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
   }
 </style>

@@ -1,4 +1,5 @@
 <template>
+<body>
   <nav class="nav__bar">
     <div class="nav__bar-left">
         <router-link to="/" class="home__button">
@@ -26,6 +27,7 @@
   </nav>
 
   <hr>
+</body>
 </template>
 
 <script>
