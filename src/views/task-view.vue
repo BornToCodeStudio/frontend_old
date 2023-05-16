@@ -110,6 +110,8 @@
             }
         },
         mounted() {
+            this.$store.actions.loadTasks();
+
             this.createEditor(1);
         }
     }

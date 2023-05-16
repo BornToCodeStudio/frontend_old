@@ -74,21 +74,6 @@ export default {
       calculatePages(length) {
         return length != 0 ? Math.ceil(length / 2) : 0;
       },
-      async loadTasks() {
-        let data = await axios({
-            method: 'get',
-            url: "/tasks/getAll",
-            responseType: 'json'
-        }).then(function (response) {
-            if (response.status == 200) {
-                return response.data;
-            }
-
-            return [];
-        });
-        this.$store.state.homeTasks = data;
-        this.tasks = data;
-      },
       getPreview(id) {
         let task = this.tasks.find(t => t.id == id);
         if (!task)
@@ -98,7 +83,8 @@ export default {
       }
   },
   mounted() {
-    this.loadTasks();
+    this.$store.actions.loadTasks();
+    this.tasks = this.$store.state.homeTasks;
   }
 };
 </script>
