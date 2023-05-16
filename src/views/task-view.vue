@@ -2,20 +2,20 @@
     <div class="task">
         <div class="code__area">
             <div class="options">
-                <div class="option" @click="changeOption(1)">HTML</div>
-                <div class="option" @click="changeOption(2)">CSS</div>
-                <div class="option" @click="changeOption(3)">JS</div>
+                <div @click="changeOption(1)" :class="optionType == 1 ? 'selected' : 'option'">HTML</div>
+                <div @click="changeOption(2)" :class="optionType == 2 ? 'selected' : 'option'">CSS</div>
+                <div @click="changeOption(3)" :class="optionType == 3 ? 'selected' : 'option'">JS</div>
             </div>
-            <div class="code__live">
-                <textarea class="text__code" ref="editor"></textarea>
-            </div>
+            <textarea class="text__code" ref="editorHtml" v-show="optionType == 1" v-model="html"></textarea>
+            <textarea class="text__code" ref="editorCss" v-show="optionType == 2" v-model="css"></textarea>
+            <textarea class="text__code" ref="editorJs" v-show="optionType == 3" v-model="js"></textarea>
             <div class="buttons">
                 <div class="upload__file">Загрузить файл</div>
-                <div class="preview" @click="preview()" v-show="optionType == 1">Предпросмотр</div>
+                <div class="preview" @click="previewHtml()" v-show="optionType == 1">Предпросмотр</div>
                 <div class="preview" @click="runJs()" v-show="optionType == 3">Запустить JS</div>
                 <div class="send__code">Отправить на проверку</div>
             </div>
-            <iframe class="code__preview" v-show="optionType == 1" :srcdoc="text"/>
+            <iframe class="code__preview" ref="iframe" :srcdoc="this.html + `<style>${this.css}</style>`"/>
         </div>
 
         <div class="info">
@@ -29,13 +29,6 @@
 </template>
 
 <script>
-    import * as CodeMirror from 'codemirror';
-    import 'codemirror/lib/codemirror.css'
-    import 'codemirror/theme/dracula.css'
-    import 'codemirror/mode/htmlmixed/htmlmixed.js'
-    import 'codemirror/mode/javascript/javascript.js'
-    import 'codemirror/mode/css/css.js';
-
     export default {
         name: "TaskPage",
         components: {
@@ -44,8 +37,9 @@
         data() {
             return {
                 optionType: 1,
-                text: '',
-                codeMirror: null
+                html: '',
+                css: '',
+                js: ''
             }
         },
         methods: {
@@ -57,10 +51,6 @@
                     
                 return task;
             },
-            preview() {
-                let text = this.codeMirror.getValue();
-                this.text = text;
-            },
             changeOption(type) {
                 if (type <= 0 || type > 3)
                     return;
@@ -69,36 +59,8 @@
                     return;
 
                 this.optionType = type;
-
-                this.createEditor(type);
             },
-            createEditor(type) {
-                let mode = "";
-
-                switch (type) {
-                    case 1:
-                        mode = "htmlmixed";
-                        break;
-                    case 2:
-                        mode = "css";
-                        break;
-                    case 3:
-                        mode = "javascript";
-                        break;
-                }
-
-                if (this.codeMirror)
-                    this.codeMirror.toTextArea();
-
-                this.codeMirror = CodeMirror.fromTextArea(this.$refs.editor, {
-                    lineNumbers: true,
-                    theme: "dracula",
-                    mode: mode,
-                    styleActiveLine: true,
-                    matchBrackets: true,
-                })
-            },
-            runJs() {
+            /*runJs() {
                 let code = this.codeMirror.getValue();
                 let func = new Function(code);
 
@@ -107,32 +69,62 @@
                 } catch (error) {
                     alert(error);
                 }
-            }
+            }*/
         },
         mounted() {
-            this.createEditor(1);
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    @mixin option {
+        width: 75px;
+        color: white;
+        cursor: pointer;
+        border-radius: 10px 0 0 0;
+}
+
+    .selected {
+        @include option;
+
+        background-color: #4e4e4e;
+    }
+
     .task {
         display: grid;
         grid-template-columns: 70% 20%;
         gap: 50px;
+        padding-left: 20px;
+        padding-top: 20px;
 
         .code__area {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+
+            .text__code {
+                background: #1f1f1f;
+                color: #fff;
+                padding: 10px 20px;
+                border: 0;
+                outline: 0;
+                font-size: 18px;
+                flex-basis: 380px;
+            }
 
             .options {
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
+                text-align: center;
 
                 .option {
-                    cursor: pointer;
+                    @include option;
+
+                    background-color: #282a36;
+
+                    &:hover {
+                        background-color: #4e4e4e;
+                    }
                 }
             }
 
@@ -140,6 +132,8 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                padding-top: 20px;
+                padding-bottom: 20px;
 
                 .upload__file {
                     border-radius: 15px;

@@ -24,9 +24,4 @@ export default {
   * {
     font-family: 'Nunito', sans-serif;
   }
-
-  body {
-    margin: 0;
-    padding: 0;
-  }
 </style>
