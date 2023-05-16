@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import axios from '../axios/index.js';
 
 export default{
     name: "SignUp",
@@ -38,7 +37,7 @@ export default{
 
                 this.$store.state.loader = true;
 
-                await axios({
+                await this.axios({
                     method: 'post',
                     url: "/users/signUp",
                     data: dto

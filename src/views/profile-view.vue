@@ -39,7 +39,6 @@
 </template>
     
 <script>
-import axios from '../axios/index.js';
 import SomeTask from '../components/some-task.vue';
 import StatsItem from '../components/stats-item.vue';
 import profileImage from '../assets/default_avatar.png';
@@ -67,7 +66,7 @@ export default{
         async loadProfile() {
             this.$store.state.loader = true;
 
-            let data = await axios({
+            let data = await this.axios({
                 method: 'get',
                 url: "/users/getProfile/" + this.$route.params.userId,
                 withCredentials: true
@@ -81,7 +80,7 @@ export default{
             this.$store.state.loader = false;
         },
         async loadTasks() {
-            let data = await axios({
+            let data = await this.axios({
                 method: 'get',
                 url: process.env.VUE_APP_API_URL,
                 responseType: 'json'
@@ -97,7 +96,7 @@ export default{
         },
         async loadTasksCount() {
             try {
-                let data = await axios({
+                let data = await this.axios({
                     method: 'get',
                     url: process.env.VUE_APP_API_URL,
                     responseType: 'text'
@@ -134,7 +133,7 @@ export default{
             let formData = new FormData();
             formData.append('formFile', this.file);
 
-            await axios({
+            await this.axios({
                 data: formData,
                 method: 'post',
                 url: ''
@@ -152,7 +151,7 @@ export default{
         async loadAvatar() {
             let data = null;
             try {
-                data = await axios({
+                data = await this.axios({
                     method: 'get',
                     url: process.env.VUE_APP_API_URL,
                     responseType: 'json'

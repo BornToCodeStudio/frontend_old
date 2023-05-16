@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from '../axios/index.js';
+
 
 export default {
   name: "nav-bar",
@@ -48,7 +48,7 @@ export default {
       try {
         this.$store.state.loader = true;
 
-        await axios({
+        await this.axios({
           method: "post",
           url: "/users/verifySignIn",
           withCredentials: true
@@ -69,7 +69,7 @@ export default {
       }
     },
     async goToSelfProfile() {
-      let data = await axios({
+      let data = await this.axios({
         method: "get",
         url: "/users/selfProfile",
         withCredentials: true

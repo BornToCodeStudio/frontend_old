@@ -31,7 +31,6 @@
 
 <script>
 
-import axios from '../axios/index.js'
 import previewImageDefault from '../assets/default_preview_solution.png';
 import HomeTask from '../components/home-task.vue';
 import ItemSwitcher from '../components/item-switcher.vue'
@@ -75,7 +74,7 @@ export default {
         return length != 0 ? Math.ceil(length / 2) : 0;
       },
       async loadTasks() {
-        let data = await axios({
+        let data = await this.axios({
             method: 'get',
             url: "/tasks/getAll",
             responseType: 'json'
