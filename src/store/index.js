@@ -16,20 +16,6 @@ export default createStore({
   mutations: {
   },
   actions: {
-    async loadTasks() {
-      let data = await axios({
-          method: 'get',
-          url: "/tasks/getAll",
-          responseType: 'json'
-      }).then(function (response) {
-          if (response.status == 200) {
-              return response.data;
-          }
-
-          return [];
-      });
-      this.$store.state.homeTasks = data;
-    },
   },
   modules: {
   }

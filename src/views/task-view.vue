@@ -105,13 +105,11 @@
                 try {
                     func();
                 } catch (error) {
-                    alert("Долбаеб? " + error);
+                    alert(error);
                 }
             }
         },
         mounted() {
-            this.$store.actions.loadTasks();
-
             this.createEditor(1);
         }
     }
