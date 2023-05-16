@@ -105,7 +105,7 @@
                 try {
                     func();
                 } catch (error) {
-                    alert("Долбаеб? " + error);
+                    alert(error);
                 }
             }
         },
