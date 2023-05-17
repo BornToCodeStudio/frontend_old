@@ -12,17 +12,15 @@
             <div class="buttons">
                 <div class="upload__file">Загрузить файл</div>
                 <div class="preview" @click="preview()">Предпросмотр</div>
-                <div class="preview" @click="runJs()" v-show="optionType == 3">Запустить JS</div>
                 <div class="send__code" @click="check()">Отправить на проверку</div>
             </div>
-            <iframe class="code__preview" :srcdoc="srcDoc"/>
+            <iframe class="code__preview" :srcdoc="srcDoc" ref="iframe"/>
         </div>
 
         <div class="info">
             <span class="result" :class="{ true: result, false: !result }">Результат</span>
-            <span class="description">{{ task().fullDescription }}</span>
+            <span class="description">{{ task?.fullDescription }}</span>
             <div class="comments">
-
             </div>
         </div>
     </div>
@@ -33,6 +31,7 @@
     import { html } from "@codemirror/lang-html";
     import { css } from "@codemirror/lang-css";
     import { javascript } from "@codemirror/lang-javascript";
+    import { EditorState } from "@codemirror/state";
 
     export default {
         name: "TaskPage",
@@ -46,17 +45,48 @@
                 cssEditor: null,
                 jsEditor: null,
                 srcDoc: '',
-                result: false
+                result: false,
+                task: null
             }
         },
         methods: {
-            task() {
+            loadTaskFromStore() {
                 let id = Number(this.$route.params.id);
                 let task = this.$store.getters.getTask(id);
-                if (!task)
+                if (!task) {
+                    this.loadTask();
+
                     return;
+                }
                     
-                return task;
+                this.task = task;
+            },
+            async loadTask() {
+                try {
+                    let data = await this.axios({
+                        method: "get",
+                        url: "/tasks/get/" + this.$route.params.id,
+                        withCredentials: true
+                    }).then((response) => {
+                        if (response.status == 200)
+                            return response.data;
+                        else {
+                            this.$router.push("/");
+
+                            return null;
+                        }
+                    });
+
+                    if (!data)
+                        return null;
+
+                    this.task = data;
+                }
+                catch (error) {
+                    this.$router.push("/");
+
+                    this.task = null;
+                }
             },
             changeOption(type) {
                 if (type <= 0 || type > 3)
@@ -67,11 +97,11 @@
 
                 this.optionType = type;
             },
-            runJs() {
-            },
             getPreview() {
-                if (!this.htmlEditor || !this.cssEditor)
+                if (!this.htmlEditor || !this.cssEditor || !this.jsEditor)
                     return;
+
+                this.$refs.iframe.contentWindow.eval(this.getText(3));
 
                 return this.getText(1) + `<style>${this.getText(2)}</style>`;
             },
@@ -97,8 +127,166 @@
 
                 return editor.state.doc.toString();
             },
+            async solution() {
+                let verify = await this.axios({
+                    method: "post",
+                    url: "/users/verifySignIn",
+                    withCredentials: true
+                    }).then((response) => {
+                        return response.status == 200;
+                });
+
+                if (!verify) {
+                    this.$router.push("/SignIn");
+
+                    return;
+                }
+
+                let added = await this.axios({
+                    method: 'get',
+                    url: '/solutions/isAdded/' + this.$route.params.id,
+                    withCredentials: true 
+                }).then((response) => {
+                    return response.data;
+                });
+                
+                let dto = {
+                    TaskId: this.task.id,
+                    CreatedAt: new Date().toUTCString(),
+                    Html: this.getText(1),
+                    Css: this.getText(2),
+                    Js: this.getText(3),
+                    Completed: this.result,
+                    Title: ""
+                }
+
+                if (added) {
+                    await this.axios({
+                        method: 'put',
+                        url: '/solutions/update',
+                        data: dto,
+                        withCredentials: true
+                    });
+                }
+                else {
+                    await this.axios({
+                        method: "put",
+                        url: "/solutions/add",
+                        data: dto,
+                        withCredentials: true
+                    });
+                }
+            },
+            async loadSolution() {
+                let verify = await this.axios({
+                    method: "post",
+                    url: "/users/verifySignIn",
+                    withCredentials: true
+                    }).then((response) => {
+                        return response.status == 200;
+                });
+
+                if (!verify)
+                    return;
+
+                let added = await this.axios({
+                    method: 'get',
+                    url: '/solutions/isAdded/' + this.$route.params.id,
+                    withCredentials: true 
+                }).then((response) => {
+                    return response.data;
+                });
+
+                if (!added) {
+                    let dto = {
+                        TaskId: this.task.id,
+                        CreatedAt: new Date().toUTCString(),
+                        Html: "",
+                        Css: "",
+                        Js: "",
+                        Completed: false,
+                        Title: this.task.title
+                    }
+
+                    await this.axios({
+                        method: "put",
+                        url: "/solutions/add",
+                        data: dto,
+                        withCredentials: true
+                    });
+                }
+
+                let id = await this.axios({
+                    method: "get",
+                    url: "/users/selfProfile",
+                    withCredentials: true
+                }).then((response) => {
+                    if (response.status == 200)
+                    return response.data;
+                });
+
+                if (!id)
+                    return;
+
+                let data = await this.axios({
+                    method: 'get',
+                    url: "/users/getProfile/" + id,
+                    withCredentials: true
+                }).then((response) => {
+                    if (response.status == 200)
+                        return response.data;
+                });
+
+                let name = data.name;
+
+                let solution = await this.axios({
+                    method: 'get',
+                    url: `solutions/${name}/get/${this.$route.params.id}`
+                }).then((response) => {
+                    if (response.status == 200)
+                        return response.data;
+                    else
+                        return {};
+                });
+
+                if (!solution)
+                    return;
+
+                this.result = solution.completed;
+
+                let theme = EditorView.theme({
+                    ".cm-scroller": {"height":"450px"},
+                    ".cm-activeLine": {"background":"#ffcbb3"},
+                    ".cm-activeLineGutter": {"background-color":"#ffcbb3"},
+                    ".ͼi": {"color":"#FF570C"}
+                });
+
+                this.htmlEditor = new EditorView({
+                    parent: this.$refs.html,
+                    state: EditorState.create({
+                        doc: solution.html,
+                        extensions: [basicSetup, html(), theme]
+                    })
+                });
+
+                this.cssEditor = new EditorView({
+                    parent: this.$refs.css,
+                    state: EditorState.create({
+                        doc: solution.css,
+                        extensions: [basicSetup, css(), theme]
+                    })
+                });
+
+                this.jsEditor = new EditorView({
+                    parent: this.$refs.js,
+                    state: EditorState.create({
+                        doc: solution.js,
+                        extensions: [basicSetup, javascript(), theme]
+                    })
+                });
+            },
             check() {
-                let rules = this.task()?.htmlStruct.checkElementRules;
+                let rules = this.task?.htmlStruct.checkElementRules;
                 if (!rules)
                     return;
 
@@ -108,6 +296,8 @@
                 });
 
                 this.result = complete.every(b => b);
+
+                this.solution();
             },
             checkTextInHtmlElement(text, element, rulesLength) {
                 const htmlString = this.getText(1);
@@ -128,36 +318,9 @@
             }
         },
         mounted() {
-            if (!this.$store.state.authorized) {
-                this.$router.push("/SignIn")
+            this.loadTaskFromStore();
 
-                return;
-            }
-
-            if (!this.task())
-                return;
-
-            let theme = EditorView.theme({
-                ".cm-scroller": {"height":"450px"},
-                ".cm-activeLine": {"background":"#ffcbb3"},
-                ".cm-activeLineGutter": {"background-color":"#ffcbb3"},
-                ".ͼi": {"color":"#FF570C"}
-            });
-
-            this.htmlEditor = new EditorView({
-                extensions: [basicSetup, html(), theme],
-                parent: this.$refs.html
-            });
-
-            this.cssEditor = new EditorView({
-                extensions: [basicSetup, css(), theme],
-                parent: this.$refs.css
-            });
-
-            this.jsEditor = new EditorView({
-                extensions: [basicSetup, javascript(), theme],
-                parent: this.$refs.js
-            });
+            this.loadSolution();
         }
     }
 </script>

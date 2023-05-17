@@ -36,7 +36,7 @@
 export default {
   name: "nav-bar",
   mounted() {
-    this.verifySignIn();
+    this.$store.dispatch("verifySignIn");
   },
   data() {
     return {
@@ -44,30 +44,6 @@ export default {
     }
   },
   methods: {
-    async verifySignIn() {
-      try {
-        this.$store.state.loader = true;
-
-        await this.axios({
-          method: "post",
-          url: "/users/verifySignIn",
-          withCredentials: true
-        }).then((response) => {
-          if (response.status == 200)
-            this.$store.state.authorized = true;
-          else
-            this.$store.state.authorized = false;
-        });
-
-        this.$store.state.loader = false;
-      }
-      catch (error) {
-        this.$store.state.authorized = false;
-        this.$store.state.loader = false;
-
-        console.log(error);
-      }
-    },
     async goToSelfProfile() {
       let data = await this.axios({
         method: "get",
@@ -105,6 +81,7 @@ export default {
             display: flex;
             gap: 10px;
             flex-direction: row;
+            color: white;
         }
 
         .nav__bar-left {
@@ -152,7 +129,7 @@ export default {
       cursor: pointer;
       border-radius: 15px;
       border-width: 0px;
-      background-color: #ff7332;
+      background-color: #FF570C;
       text-decoration: none;
       color: inherit;
       align-items: center;
@@ -165,7 +142,7 @@ export default {
       align-items: center;
       border-radius: 15px;
       border-width: 0px;
-      background-color: #ff7332;
+      background-color: #FF570C;
       cursor: pointer;
 
       img {
@@ -194,6 +171,6 @@ export default {
         border-radius: 10px;
         border-width: 0px;
         width: 30px;
-        background-color: #ff7332;
+        background-color: #FF570C;
     }
 </style>
