@@ -38,7 +38,7 @@ export default {
         height: 45px;
         border-radius: 10px;
         border: 1px dashed #FF570C;
-        background-color: #ECF4FE;
+        background-color: rgb(255, 89, 13, .1);
         display: flex;
         flex-direction: row;
         justify-content: space-around;

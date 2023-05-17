@@ -28,7 +28,7 @@ export default {
         width: 42px;
         text-align: center;
         border-radius: 35px;
-        background-color: #ECF4FE;
+        background-color: rgb(255, 89, 13, .3);
         border: 1px dashed #FF570C;
         line-height: 45px;
     }

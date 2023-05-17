@@ -128,16 +128,26 @@
                 return editor.state.doc.toString();
             },
             async solution() {
-                let verify = await this.axios({
-                    method: "post",
-                    url: "/users/verifySignIn",
-                    withCredentials: true
-                    }).then((response) => {
-                        return response.status == 200;
-                });
+                this.$store.state.loader = true;
+
+                let verify = false;
+                try {
+                    verify = await this.axios({
+                        method: "post",
+                        url: "/users/verifySignIn",
+                        withCredentials: true
+                        }).then((response) => {
+                            return response.status == 200;
+                    });
+                }
+                catch (error) {
+                    this.$store.state.loader = false;
+                }
 
                 if (!verify) {
                     this.$router.push("/SignIn");
+
+                    this.$store.state.loader = false;
 
                     return;
                 }
@@ -176,18 +186,33 @@
                         withCredentials: true
                     });
                 }
+
+                this.$store.state.loader = false;
             },
             async loadSolution() {
-                let verify = await this.axios({
-                    method: "post",
-                    url: "/users/verifySignIn",
-                    withCredentials: true
-                    }).then((response) => {
-                        return response.status == 200;
-                });
+                this.$store.state.loader = true;
 
-                if (!verify)
+                let verify = false;
+                try {
+                    verify = await this.axios({
+                        method: "post",
+                        url: "/users/verifySignIn",
+                        withCredentials: true
+                        }).then((response) => {
+                            return response.status == 200;
+                    });
+                }
+                catch (error) {
+                    this.$store.state.loader = false;
+                }
+
+                if (!verify) {
+                    this.createEditors("", "", "");
+
+                    this.$store.state.loader = false;
+
                     return;
+                }
 
                 let added = await this.axios({
                     method: 'get',
@@ -225,8 +250,13 @@
                     return response.data;
                 });
 
-                if (!id)
+                if (!id) {
+                    this.createEditors("", "", "");
+
+                    this.$store.state.loader = false;
+
                     return;
+                }
 
                 let data = await this.axios({
                     method: 'get',
@@ -249,11 +279,21 @@
                         return {};
                 });
 
-                if (!solution)
+                if (!solution) {
+                    this.createEditors("", "", "");
+
+                    this.$store.state.loader = false;
+
                     return;
+                }
 
                 this.result = solution.completed;
 
+                this.createEditors(solution?.html, solution?.css, solution?.js);
+
+                this.$store.state.loader = false;
+            },
+            createEditors(htmlText, cssText, jsText) {
                 let theme = EditorView.theme({
                     ".cm-scroller": {"height":"450px"},
                     ".cm-activeLine": {"background":"#ffcbb3"},
@@ -264,7 +304,7 @@
                 this.htmlEditor = new EditorView({
                     parent: this.$refs.html,
                     state: EditorState.create({
-                        doc: solution.html,
+                        doc: htmlText,
                         extensions: [basicSetup, html(), theme]
                     })
                 });
@@ -272,7 +312,7 @@
                 this.cssEditor = new EditorView({
                     parent: this.$refs.css,
                     state: EditorState.create({
-                        doc: solution.css,
+                        doc: cssText,
                         extensions: [basicSetup, css(), theme]
                     })
                 });
@@ -280,7 +320,7 @@
                 this.jsEditor = new EditorView({
                     parent: this.$refs.js,
                     state: EditorState.create({
-                        doc: solution.js,
+                        doc: jsText,
                         extensions: [basicSetup, javascript(), theme]
                     })
                 });

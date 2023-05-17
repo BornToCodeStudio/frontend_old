@@ -4,7 +4,6 @@
             <div class="left__part">
                 <img ref='taskImg' alt="unload" class="image__preview">
                 <span class="author">{{ task.author }}</span>
-                <span class="is__tried">{{ true }}</span>
             </div>
             <div class="right__part">
                 <span class="task__name">{{ task.title }}</span>
