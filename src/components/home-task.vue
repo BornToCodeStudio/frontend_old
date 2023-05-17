@@ -68,7 +68,7 @@ export default {
 
                 .is__tried {
                     text-align: center;
-                    background-color: #A8C9F3;
+                    background-color: #FF570C;
                     border-radius: 20px;
                     padding: 0.2em;
                     font-weight: bold;

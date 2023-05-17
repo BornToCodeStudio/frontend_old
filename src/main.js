@@ -7,4 +7,10 @@ import VueAxios from 'vue-axios'
 
 axios.defaults.baseURL = "http://api.born-to-code.ru";
 
-createApp(App).use(store).use(router).use(VueAxios, axios).mount('#app')
+let app = createApp(App);
+
+app.use(router);
+app.use(store);
+app.use(VueAxios, axios);
+
+app.mount("#app");

@@ -1,16 +1,17 @@
 <template>
-    <div class="task__button">{{ taskname }}</div>
+    <router-link :to="'/Task/' + taskId" class="task-button">
+        <span>{{ taskname }}</span>
+    </router-link>
 </template>
 
 <script>   
-import previewImageDefault from '../assets/default_preview_solution.png';
 
 export default{
     name: "Some-Task",
     props: {
         preview: {
-            type: Object,
-            default: previewImageDefault
+            type: String,
+            default: ''
         },
         author: {
             type: String,
@@ -27,23 +28,32 @@ export default{
         taskname: {
             type: String,
             default: ''
+        },
+        taskId: {
+            type: Number,
+            default: 0
         }
-    }
+    },
 }
 
 </script>
 
-<style>
-    .task__button{
+<style lang="scss" scoped>
+    .task-button{
         border-radius: 30px;
+        background-color: #FF570C;
         border-color: #1477F8;
-        border-width: 1px;
+        border-width: 10px;
         width: 300px;
         height: 220px;
-        padding-block: 50px;
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        line-height: 220px;
+        font-size: 34pt;
     }
 
-    .task__button:hover{
+    .task-button:hover{
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
 </style>

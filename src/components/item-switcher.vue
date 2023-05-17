@@ -37,7 +37,7 @@ export default {
         width: 25%;
         height: 45px;
         border-radius: 10px;
-        border: 1px dashed #7AA7E2;
+        border: 1px dashed #FF570C;
         background-color: #ECF4FE;
         display: flex;
         flex-direction: row;

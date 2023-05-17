@@ -29,7 +29,7 @@ export default {
         text-align: center;
         border-radius: 35px;
         background-color: #ECF4FE;
-        border: 1px dashed #7AA7E2;
+        border: 1px dashed #FF570C;
         line-height: 45px;
     }
 </style>

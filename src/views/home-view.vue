@@ -1,7 +1,7 @@
 <template>
     <main>
       <div class="main__upper">
-        <input type="text" id="search__bar" placeholder="Search..">
+        <input type="text" id="search__bar" placeholder="Поиск..">
         <div id="create__task">Создать задачу</div>
       </div>
       <hr>
@@ -124,9 +124,17 @@ export default {
         width: 60%;
         height: 44px;
         border-radius: 15px;
-        border-width: 1px;
-        border-color: #7AA7E2;
-        background-color: #ECF4FE;
+        border-width: 5px;
+        border-color: #FF570C;
+        background-color: rgb(255, 88, 10, .2);
+        font-size: 14pt;
+        font-weight: 800;
+        color: #FF570C;
+        font-family: 'Nunito';
+
+        &::placeholder {
+          color: #FF570C;
+        }
       }
 
       #create__task {
@@ -136,11 +144,11 @@ export default {
         border-radius: 20px;
         border-width: 0px;
         background-color: #FF570C;
-        opacity: 80%;
         line-height: 40px;
         text-align: center;
         align-items: center;
         white-space: nowrap;
+        color: white;
 
         &:hover {
           background-color: #d45013;
@@ -174,10 +182,10 @@ export default {
           background-color: #EFEFEF;
           border-radius: 15px;
           width: 20%;
+          color: white;
 
           #filter__new , #filter__solutions, #filter__likes{
             background-color: #FF570C;
-            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
@@ -194,7 +202,7 @@ export default {
           display: flex;
           justify-content: center;
           text-align: center;
-          background-color: #9AA5AC;
+          background-color: #FF570C;
           color: white;
           border-radius: 15px;
           width:10%;
@@ -208,10 +216,10 @@ export default {
           background-color: #EFEFEF;
           border-radius: 15px;
           width: 20%;
+          color: white;
 
           #filter__html , #filter__css, #filter__js{
             background-color: #FF570C;
-            opacity: 80%;
             border-width: 0px;
             border-radius: 15px;
             width: 26%;
